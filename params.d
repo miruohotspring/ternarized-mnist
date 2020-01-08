@@ -1,3 +1,1 @@
-params.o: params.c params.h
-
-params.h:
+params.o: params.c
