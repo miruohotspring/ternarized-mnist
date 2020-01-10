@@ -3,8 +3,19 @@
 #include "data.h"
 #include "layers.h"
 #include "util.h"
+#include "params.h"
+#include "minitrace/minitrace.h"
 
 int main() {
+    // -- prepare mini trace -----------------
+    mtr_init("trace.json");
+    
+    mtr_register_sigint_handler();
+    
+    MTR_META_PROCESS_NAME("minitrace_test");
+    MTR_META_THREAD_NAME("main thread");
+    
+    // ---------------------------------------
     
     int outputs[__DATANUM__];
     
@@ -26,7 +37,7 @@ int main() {
         int conv2_in[20][12][12] = {{{0}}};
         ternarize1(bn2_out, conv2_in);
         float conv2_out[50][8][8] = {{{0}}};
-        conv2(conv2_in, conv2_out);
+        conv2__(conv2_in, binconv2_conv_weight, binconv2_conv_bias, binconv2_alpha, conv2_out);
         
         float relu2_out[50][8][8] = {{{0}}};
         relu2(conv2_out, relu2_out);
@@ -68,6 +79,7 @@ int main() {
 */
     }
     
+    mtr_shutdown();
     return 0;
 }
 

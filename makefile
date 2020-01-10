@@ -1,10 +1,10 @@
 PROG := a.out
-SRCS := $(wildcard *.c)
+SRCS := $(wildcard *.c) minitrace/minitrace.c
 OBJS := $(SRCS:%.c=%.o)
 DEPS := $(SRCS:%.c=%.d)
 
 CC := gcc
-CCFLAGS := -std=c11 -O0 -g -Wall
+CCFLAGS := -std=c11 -O0 -g -Wall -DMTR_ENABLED
 INCLUDEPATH := -I/usr/local/include 
 LIBPATH := -L/usr/local/lib 
 LIBS := 
