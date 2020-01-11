@@ -11,7 +11,7 @@ extern float binconv2_bn_bias[20];
 extern float binconv2_bn_runningmean[20];
 extern float binconv2_bn_runningvar[20];
 extern float binconv2_bn_numbatchestracked;
-extern float binconv2_conv_weight[50][20][5][5];
+extern int binconv2_conv_weight[50][20][5][5];
 extern float binconv2_conv_bias[50];
 extern float binip1_bn_weight[50];
 extern float binip1_bn_bias[50];

@@ -10,7 +10,7 @@ void pool1(float input[20][24][24], float output[20][12][12]);
 // binconv2
 void bn2(float input[20][12][12], float output[20][12][12]);
 void conv2(int input[20][12][12], float weight[50][20][5][5], float bias[50], float alpha[50], float output[50][8][8]);
-void conv2__(int input[20][12][12], float weight[50][20][5][5], float bias[50], float alpha[50], float output[50][8][8]);
+void conv2__(int input[20][12][12], int weight[50][20][5][5], float bias[50], float alpha[50], float output[50][8][8]);
 void relu2(float input[50][8][8], float output[50][8][8]);
 void pool2(float input[50][8][8], float output[50][4][4]);
 // binip1

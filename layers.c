@@ -110,7 +110,7 @@ void conv2(int input[20][12][12], float weight[50][20][5][5], float bias[50], fl
     MTR_END_FUNC();
 }
 
-void conv2__(int input[20][12][12], float weight[50][20][5][5], float bias[50], float alpha[50], float output[50][8][8]){
+void conv2__(int input[20][12][12], int weight[50][20][5][5], float bias[50], float alpha[50], float output[50][8][8]){
     MTR_BEGIN_FUNC();
     for (int cout = 0; cout < 50; cout++) {
         MTR_BEGIN("conv2", "subloop1");
@@ -122,14 +122,14 @@ void conv2__(int input[20][12][12], float weight[50][20][5][5], float bias[50], 
         MTR_BEGIN("conv2", "hls1");
         for (int h = 0; h < 8; h++) {
 #pragma HLS unroll
-            output[cout][h][0] += input[cin][h+fh][0+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][1] += input[cin][h+fh][1+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][2] += input[cin][h+fh][2+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][3] += input[cin][h+fh][3+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][4] += input[cin][h+fh][4+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][5] += input[cin][h+fh][5+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][6] += input[cin][h+fh][6+fw] * binconv2_conv_weight[cout][cin][fh][fw];
-            output[cout][h][7] += input[cin][h+fh][7+fw] * binconv2_conv_weight[cout][cin][fh][fw];
+            output[cout][h][0] += input[cin][h+fh][0+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][1] += input[cin][h+fh][1+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][2] += input[cin][h+fh][2+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][3] += input[cin][h+fh][3+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][4] += input[cin][h+fh][4+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][5] += input[cin][h+fh][5+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][6] += input[cin][h+fh][6+fw] * weight[cout][cin][fh][fw];
+            output[cout][h][7] += input[cin][h+fh][7+fw] * weight[cout][cin][fh][fw];
         }
         MTR_END("conv2", "hls1");
                 }
